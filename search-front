@@ -1,0 +1,96 @@
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    input.large {
+      height:45px;
+      padding:5px;
+      padding-top:0.715em!important;
+    padding-right:0.715em!important;
+    padding-bottom:0.715em!important;
+    padding-left: 0.715em!important;
+    border-color: #4E2B81!important;
+    border: solid;
+    height: auto;
+    min-height: 0;border-radius: 60px 60px 60px 60px;
+    overflow: hidden;
+    background: transparent;
+        font-size: 14px;
+        color: #666;
+      background-color: #fff;
+
+    padding: 2px;
+    color: #4e4e4e;
+      font-family: inherit;
+      text-align: start;
+  cursor: text;
+      writing-mode: horizontal-tb !important;}
+    li:hover{background-color:#4E2B81;
+          color:white !important;
+    }
+    ::placeholder{
+
+    font-size:100%; margin-left:2px;}
+@media (min-width: 1500px) {
+  ::placeholder{ font-size:25px;}
+  input.large{font-size:22px; height: 50px;}
+  ul li{ font-size:20px;}
+
+}
+
+</style>
+
+    <div class="container">
+
+                <div class="search">
+                    <form method="post" action="">
+			<div>
+                        <input name="search" id="search" type="text" class="form-control shadow large"  placeholder="Cherchez une mosquée mawaqit par nom, ville, code postal..."  style="">
+                     </div>
+  <ul id="searchresult" type="" class="mt-1 " style="width:100%; text-align:left; padding:0;">
+                        </ul>
+
+                    </form>
+               </div>
+                      </div>
+
+ <div class="container">
+
+
+<script>
+
+  let ajaxurlll = '[wbcr_php_snippet id="3561"]';
+  let searchresult=document.getElementById('searchresult');
+  $(document).ready(function(){
+    $('#search').keyup(function(){
+    	var form_data = new FormData();
+      form_data.append('name', $("#search").val());
+      form_data.append('action', 'search_engine');
+
+       $.ajax({
+         type:'POST',
+         contentType: false,
+         processData: false,
+          url:ajaxurlll,
+          data:form_data,
+          success:function(data){
+            //alert(data);
+            $("#searchresult").html(data);
+          }
+        });
+
+    });
+  });
+
+  window.onclick= function(e){
+    if(e.target != searchresult){
+      searchresult.classList.remove("border");
+      searchresult.innerHTML="";
+    }
+  }
+</script>
+
